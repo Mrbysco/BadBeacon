@@ -1,8 +1,8 @@
 package com.androsa.badbeacon;
 
 import com.google.common.collect.Lists;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.Hud;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Tooltip;
@@ -112,6 +112,7 @@ public class BadBeaconScreen extends AbstractContainerScreen<BadBeaconMenu> {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor stack, int mouseX, int mouseY, float partialTicks) {
+        super.extractBackground(stack, mouseX, mouseY, partialTicks);
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
         stack.blit(RenderPipelines.GUI_TEXTURED, BEACON_GUI_TEXTURES, x, y, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
@@ -185,7 +186,7 @@ public class BadBeaconScreen extends AbstractContainerScreen<BadBeaconMenu> {
 
         protected void setEffect(Holder<MobEffect> effect) {
         	this.effect = effect;
-        	this.textureSprite = Gui.getMobEffectSprite(effect);
+        	this.textureSprite = Hud.getMobEffectSprite(effect);
         	this.setTooltip(Tooltip.create(this.createDescription(effect), null));
 		}
 

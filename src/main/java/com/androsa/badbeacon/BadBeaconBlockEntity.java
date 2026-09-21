@@ -36,6 +36,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -310,7 +311,7 @@ public class BadBeaconBlockEntity extends BlockEntity implements MenuProvider, N
         if (this.lock.canUnlock(player)) {
             return new BadBeaconMenu(id, playerInv, this.dataAccess, ContainerLevelAccess.create(this.level, this.getBlockPos()));
         } else {
-            BaseContainerBlockEntity.sendChestLockedNotifications(this.getBlockPos().getCenter(), player, this.getDisplayName());
+            BaseContainerBlockEntity.sendChestLockedNotifications(Vec3.atCenterOf(this.getBlockPos()), player, this.getDisplayName());
             return null;
         }
     }
